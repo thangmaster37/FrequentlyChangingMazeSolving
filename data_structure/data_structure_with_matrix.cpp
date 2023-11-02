@@ -56,6 +56,8 @@ void printMaze(const std::vector<std::vector<bool>> &maze)
 }
 
 // Hàm chọn ngẫu nhiên hai ô có giá trị false làm điểm bắt đầu và điểm kết thúc
+// Chọn điểm bắt đầu và kết thúc sau khi tạo maze mà không phải trước đó 
+// vì để bám sát các vấn đề thực tiễn ứng dụng là map có trước khi ta chọn điểm bắt đầu và kết thúc 
 std::pair<std::pair<int, int>, std::pair<int, int>> selectStartAndEnd(const std::vector<std::vector<bool>> &maze)
 {
     int m = maze.size();

@@ -84,6 +84,16 @@ std::pair<std::pair<int, int>, std::pair<int, int>> selectStartAndEnd(const std:
     return std::make_pair(start, end);
 }
 
+void changeMaze(std::vector<std::vector<bool>> &maze) {
+
+}
+
+std::vector<std::vector<bool>> changeCloneMaze(std::vector<std::vector<bool>> &maze) {
+    std::vector<std::vector<bool>> newMaze(maze.size(), std::vector<bool>(maze[0].size(), false));
+
+    return newMaze;
+}
+
 int main()
 {
     int m = 5;                        // Số hàng

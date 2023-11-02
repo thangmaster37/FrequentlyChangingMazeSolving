@@ -84,10 +84,12 @@ std::pair<std::pair<int, int>, std::pair<int, int>> selectStartAndEnd(const std:
     return std::make_pair(start, end);
 }
 
+// Hàm thay đổi mê cung trực tiếp trên mê cung cũ
 void changeMaze(std::vector<std::vector<bool>> &maze) {
 
 }
 
+// Hàm tạo ra 1 mê cung clone với 1 số thay đổi nhỏ so với mê cung cũ
 std::vector<std::vector<bool>> changeCloneMaze(std::vector<std::vector<bool>> &maze) {
     std::vector<std::vector<bool>> newMaze(maze.size(), std::vector<bool>(maze[0].size(), false));
 
@@ -97,7 +99,7 @@ std::vector<std::vector<bool>> changeCloneMaze(std::vector<std::vector<bool>> &m
 int main()
 {
     int m = 5;                        // Số hàng
-    int n = 5;                        // Số cột
+    int n = 10;                        // Số cột
     double obstacleProbability = 0.3; // Xác suất ô không thể đi qua
 
     std::vector<std::vector<bool>> maze = createMaze(m, n, obstacleProbability);

@@ -85,13 +85,45 @@ std::pair<std::pair<int, int>, std::pair<int, int>> selectStartAndEnd(const std:
 }
 
 // Hàm thay đổi mê cung trực tiếp trên mê cung cũ
-void changeMaze(std::vector<std::vector<bool>> &maze) {
-
+void changeMaze(std::vector<std::vector<bool>> &maze, double probFalseToTrue, double probTrueToFalse)
+{
+    for (int i = 0; i < maze.size(); i++)
+    {
+        for (int j = 0; j < maze[0].size(); j++)
+        {
+            double randomValue = static_cast<double>(std::rand()) / RAND_MAX;
+            if (!maze[i][j] && randomValue < probFalseToTrue)
+            {
+                maze[i][j] = true; // Chuyển từ false sang true
+            }
+            else if (maze[i][j] && randomValue < probTrueToFalse)
+            {
+                maze[i][j] = false; // Chuyển từ true sang false
+            }
+        }
+    }
 }
 
 // Hàm tạo ra 1 mê cung clone với 1 số thay đổi nhỏ so với mê cung cũ
-std::vector<std::vector<bool>> changeCloneMaze(std::vector<std::vector<bool>> &maze) {
-    std::vector<std::vector<bool>> newMaze(maze.size(), std::vector<bool>(maze[0].size(), false));
+std::vector<std::vector<bool>> changeCloneMaze(const std::vector<std::vector<bool>> &maze, double probFalseToTrue, double probTrueToFalse)
+{
+    std::vector<std::vector<bool>> newMaze = maze;
+
+    for (int i = 0; i < newMaze.size(); i++)
+    {
+        for (int j = 0; j < newMaze[0].size(); j++)
+        {
+            double randomValue = static_cast<double>(std::rand()) / RAND_MAX;
+            if (!newMaze[i][j] && randomValue < probFalseToTrue)
+            {
+                newMaze[i][j] = true; // Chuyển từ false sang true
+            }
+            else if (newMaze[i][j] && randomValue < probTrueToFalse)
+            {
+                newMaze[i][j] = false; // Chuyển từ true sang false
+            }
+        }
+    }
 
     return newMaze;
 }
@@ -111,6 +143,15 @@ int main()
     std::cout << "Mê cung được tạo ra như sau:" << std::endl;
     printMaze(maze);
 
+    std::cout << "Điểm bắt đầu: (" << start.first << ", " << start.second << ")" << std::endl;
+    std::cout << "Điểm kết thúc: (" << end.first << ", " << end.second << ")" << std::endl;
+
+    changeMaze(maze, 0.1, 0);
+    printMaze(maze);
+
+    startAndEnd = selectStartAndEnd(maze);
+    start = startAndEnd.first;
+    end = startAndEnd.second;
     std::cout << "Điểm bắt đầu: (" << start.first << ", " << start.second << ")" << std::endl;
     std::cout << "Điểm kết thúc: (" << end.first << ", " << end.second << ")" << std::endl;
 
